@@ -1,15 +1,15 @@
 import RxSwift
 
-public protocol RxSchedulerType: SchedulerType, DefinedSchedulingType {
+public protocol RxSchedulerType: SchedulerType, SchedulingType {
 
 }
 
 // extension MainScheduler: RxSchedulerType { } // huh?
 
-extension ConcurrentMainScheduler: RxSchedulerType { }
+extension ConcurrentMainScheduler: RxSchedulerType, AsyncScheduling { }
 
-extension SerialDispatchQueueScheduler: RxSchedulerType { }
+extension SerialDispatchQueueScheduler: RxSchedulerType, AsyncScheduling { }
 
-extension ConcurrentDispatchQueueScheduler: RxSchedulerType { }
+extension ConcurrentDispatchQueueScheduler: RxSchedulerType, AsyncScheduling { }
 
-extension CurrentThreadScheduler: SchedulingType { }
+extension CurrentThreadScheduler: SchedulingType, SyncScheduling { }

@@ -23,17 +23,34 @@ public extension ScheduledSequence {
         })
     }
 
-    func flatMap<Result, Scheduling: DefinedSchedulingType>(_ selector: @escaping (Element) -> ScheduledSequence<Result, Scheduling>)
-        -> ScheduledSequence<Result, Scheduling> {
+    func flatMap<Result, Scheduler: AsyncScheduling>(_ selector: @escaping (Element) -> ScheduledSequence<Result, Scheduler>)
+        -> ScheduledSequence<Result, Scheduler> {
 
-        let resultSequence: Observable<(Result, Scheduling)> = source.flatMap { args -> Observable<(Result, Scheduling)> in
-            let (element, _) = args
-            return Observable.just(element)
-                .flatMap { element -> Observable<(Result, Scheduling)> in
+        let resultSequence: Observable<(Result, Scheduler)> = source.flatMap { element, _ -> Observable<(Result, Scheduler)> in
+            Observable.just(element)
+                .flatMap { element -> Observable<(Result, Scheduler)> in
                     let resultSequence = selector(element)
                     return resultSequence.source
                 }
         }
+
+        return ScheduledSequence<Result, Scheduler>(raw: resultSequence)
+    }
+
+    func flatMap<Result, Scheduler: SyncScheduling>(_ selector: @escaping (Element) -> ScheduledSequence<Result, Scheduler>)
+        -> ScheduledSequence<Result, Scheduling> {
+
+        let resultSequence = source
+            .flatMap { element, originalScheduling -> Observable<(Result, Scheduling)> in
+                Observable.just(element)
+                    .flatMap { element -> Observable<(Result, Scheduling)> in
+                        let resultSequence = selector(element)
+                        return resultSequence.source
+                            .map { element, _ in
+                                (element, originalScheduling)
+                            }
+                    }
+            }
 
         return ScheduledSequence<Result, Scheduling>(raw: resultSequence)
     }

@@ -6,12 +6,4 @@ public extension Scheduled {
             
         return ScheduledSequence(raw: Observable.just((element, CurrentThreadScheduler.instance)))
     }
-
-    static func create<Element>(_ subscribe: @escaping (AnyObserver<Element>) -> Disposable)
-        -> ScheduledSequence<Element, UndefinedScheduling> {
-
-        return ScheduledSequence(raw: Observable.create(subscribe).map { element in
-            (element, UndefinedScheduling.instance)
-        })
-    }
 }

@@ -11,17 +11,18 @@ public extension ScheduledSequence {
 
     func subscribeOn<Scheduler: RxSchedulerType>(_ scheduler: Scheduler)
         -> ScheduledSequence<Element, Scheduling>
-        where Scheduling: UndefinedSchedulingType {
+        where Scheduling: AsyncScheduling {
 
-        return ScheduledSequence(raw: source.subscribeOn(scheduler))
+        return ScheduledSequence<Element, Scheduling>(raw: source.subscribeOn(scheduler))
     }
 
     func subscribeOn<Scheduler: RxSchedulerType>(_ scheduler: Scheduler)
         -> ScheduledSequence<Element, Scheduler>
-        where Scheduling: DefinedSchedulingType {
+        where Scheduling: SyncScheduling {
 
-        return ScheduledSequence<Element, Scheduler>(raw: source.subscribeOn(scheduler).map { element, _ in
-            (element, scheduler)
-        })
+        return ScheduledSequence<Element, Scheduler>(raw: source.subscribeOn(scheduler)
+            .map { element, _ in
+                (element, scheduler)
+            })
     }
 }

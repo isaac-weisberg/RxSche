@@ -2,10 +2,10 @@ public protocol SchedulingType {
     
 }
 
-public protocol UndefinedSchedulingType: SchedulingType {
+public protocol AsyncScheduling: SchedulingType {
 
 }
 
-public protocol DefinedSchedulingType: SchedulingType {
-
+public protocol SyncScheduling: SchedulingType {
+    
 }

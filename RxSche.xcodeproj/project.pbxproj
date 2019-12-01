@@ -10,8 +10,8 @@
 		D6B54DFCCEFCBE34EA0C43D6 /* libPods-RxSche.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BF241A9418908CD5CBEB1C7 /* libPods-RxSche.a */; };
 		FAB1BBCB2393CF69006FF679 /* Scheduled+transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB1BBCA2393CF69006FF679 /* Scheduled+transformation.swift */; };
 		FAB1BBCD2393CF81006FF679 /* ScheduledSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB1BBCC2393CF81006FF679 /* ScheduledSequence.swift */; };
-		FAB1BBD02393D089006FF679 /* PritiveSequence+rescheduling.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB1BBCF2393D089006FF679 /* PritiveSequence+rescheduling.swift */; };
 		FAB1BBD32393D1A4006FF679 /* Observable+rescheduling.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB1BBD22393D1A4006FF679 /* Observable+rescheduling.swift */; };
+		FAB1BBD72393E8AD006FF679 /* Scheduled+subscribe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB1BBD62393E8AD006FF679 /* Scheduled+subscribe.swift */; };
 		FAD882082392A05A002B6EED /* Scheduled.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD882072392A05A002B6EED /* Scheduled.swift */; };
 		FAD8820C2392A0C9002B6EED /* Scheduled+creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8820B2392A0C9002B6EED /* Scheduled+creation.swift */; };
 		FAD8820E2392A16B002B6EED /* SchedulingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8820D2392A16B002B6EED /* SchedulingType.swift */; };
@@ -25,8 +25,8 @@
 		559611DD053F44BE6E1002D2 /* Pods-RxSche.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSche.debug.xcconfig"; path = "Target Support Files/Pods-RxSche/Pods-RxSche.debug.xcconfig"; sourceTree = "<group>"; };
 		FAB1BBCA2393CF69006FF679 /* Scheduled+transformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Scheduled+transformation.swift"; sourceTree = "<group>"; };
 		FAB1BBCC2393CF81006FF679 /* ScheduledSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduledSequence.swift; sourceTree = "<group>"; };
-		FAB1BBCF2393D089006FF679 /* PritiveSequence+rescheduling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PritiveSequence+rescheduling.swift"; sourceTree = "<group>"; };
 		FAB1BBD22393D1A4006FF679 /* Observable+rescheduling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+rescheduling.swift"; sourceTree = "<group>"; };
+		FAB1BBD62393E8AD006FF679 /* Scheduled+subscribe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scheduled+subscribe.swift"; sourceTree = "<group>"; };
 		FAD881F02392969D002B6EED /* RxSche.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxSche.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD881F42392969D002B6EED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAD882072392A05A002B6EED /* Scheduled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scheduled.swift; sourceTree = "<group>"; };
@@ -65,14 +65,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		FAB1BBCE2393D041006FF679 /* PrimitiveSequence */ = {
-			isa = PBXGroup;
-			children = (
-				FAB1BBCF2393D089006FF679 /* PritiveSequence+rescheduling.swift */,
-			);
-			path = PrimitiveSequence;
-			sourceTree = "<group>";
-		};
 		FAB1BBD12393D198006FF679 /* Observable */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,7 +95,6 @@
 			isa = PBXGroup;
 			children = (
 				FAB1BBD12393D198006FF679 /* Observable */,
-				FAB1BBCE2393D041006FF679 /* PrimitiveSequence */,
 				FAD8820A2392A0AE002B6EED /* Operators */,
 				FAD882092392A07E002B6EED /* System */,
 				FAD8820423929EE8002B6EED /* Scheduling */,
@@ -136,6 +127,7 @@
 				FAD8820B2392A0C9002B6EED /* Scheduled+creation.swift */,
 				FAD882112392A483002B6EED /* Scheduled+rescheduling.swift */,
 				FAB1BBCA2393CF69006FF679 /* Scheduled+transformation.swift */,
+				FAB1BBD62393E8AD006FF679 /* Scheduled+subscribe.swift */,
 			);
 			path = Operators;
 			sourceTree = "<group>";
@@ -247,9 +239,9 @@
 			files = (
 				FAD8820E2392A16B002B6EED /* SchedulingType.swift in Sources */,
 				FAD8820C2392A0C9002B6EED /* Scheduled+creation.swift in Sources */,
-				FAB1BBD02393D089006FF679 /* PritiveSequence+rescheduling.swift in Sources */,
 				FAB1BBD32393D1A4006FF679 /* Observable+rescheduling.swift in Sources */,
 				FAD882142392A548002B6EED /* RxScheduler.swift in Sources */,
+				FAB1BBD72393E8AD006FF679 /* Scheduled+subscribe.swift in Sources */,
 				FAB1BBCD2393CF81006FF679 /* ScheduledSequence.swift in Sources */,
 				FAB1BBCB2393CF69006FF679 /* Scheduled+transformation.swift in Sources */,
 				FAD882122392A483002B6EED /* Scheduled+rescheduling.swift in Sources */,

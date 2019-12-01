@@ -54,10 +54,36 @@ public extension ScheduledSequence {
 
         return ScheduledSequence<Result, Scheduling>(raw: resultSequence)
     }
-}
 
+    func flatMapLatest<Result, Scheduler: AsyncScheduling>(_ selector: @escaping (Element) -> ScheduledSequence<Result, Scheduler>)
+        -> ScheduledSequence<Result, Scheduler> {
 
-func a() {
-//    let obs = Observable<Void>.just(())
-//    .flatMap(<#T##selector: (()) throws -> ObservableConvertibleType##(()) throws -> ObservableConvertibleType#>)
+            let resultSequence: Observable<(Result, Scheduler)> = source.flatMap { element, _ -> Observable<(Result, Scheduler)> in
+                Observable.just(element)
+                    .flatMapLatest { element -> Observable<(Result, Scheduler)> in
+                        let resultSequence = selector(element)
+                        return resultSequence.source
+                }
+            }
+
+            return ScheduledSequence<Result, Scheduler>(raw: resultSequence)
+    }
+
+    func flatMapLatest<Result, Scheduler: SyncScheduling>(_ selector: @escaping (Element) -> ScheduledSequence<Result, Scheduler>)
+        -> ScheduledSequence<Result, Scheduling> {
+
+            let resultSequence = source
+                .flatMapLatest { element, originalScheduling -> Observable<(Result, Scheduling)> in
+                    Observable.just(element)
+                        .flatMap { element -> Observable<(Result, Scheduling)> in
+                            let resultSequence = selector(element)
+                            return resultSequence.source
+                                .map { element, _ in
+                                    (element, originalScheduling)
+                            }
+                    }
+            }
+
+            return ScheduledSequence<Result, Scheduling>(raw: resultSequence)
+    }
 }

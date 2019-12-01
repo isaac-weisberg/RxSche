@@ -1,11 +1,9 @@
 import RxSwift
 
 public struct ScheduledSequence<Element, Scheduling: SchedulingType> {
-    let scheduling: Scheduling
-    let source: Observable<Element>
+    public let source: Observable<(Element, Scheduling)>
 
-    init(raw: Observable<Element>, _ scheduling: Scheduling) {
+    init(raw: Observable<(Element, Scheduling)>) {
         self.source = raw
-        self.scheduling = scheduling
     }
 }

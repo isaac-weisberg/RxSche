@@ -12,7 +12,7 @@ public struct ScheduledObserver<Element, Scheduling: SchedulingType>: ScheduledO
     public let onError: ((Error) -> Void)?
     public let onCompleted: (() -> Void)?
 
-    init(onNext: ((Element) -> Void)? = nil, onError: ((Error) -> Void)? = nil, onCompleted: (() -> Void)? = nil) {
+    public init(onNext: ((Element) -> Void)? = nil, onError: ((Error) -> Void)? = nil, onCompleted: (() -> Void)? = nil) {
         self.onNext = onNext
         self.onError = onError
         self.onCompleted = onCompleted

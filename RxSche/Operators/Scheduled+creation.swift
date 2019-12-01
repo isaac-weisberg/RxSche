@@ -2,8 +2,8 @@ import RxSwift
 
 public extension Scheduled {
     static func just<Element>(_ element: Element)
-        -> ScheduledSequence<Element, CurrentThreadScheduler> {
+        -> ScheduledObservable<Element, CurrentThreadScheduler> {
             
-        return ScheduledSequence(raw: Observable.just((element, CurrentThreadScheduler.instance)))
+        return ScheduledObservable(raw: Observable.just((element, CurrentThreadScheduler.instance)))
     }
 }

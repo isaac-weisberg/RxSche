@@ -1,7 +1,7 @@
 import RxSwift
 
-public extension ScheduledSequence {
-    func map<Result>(_ transform: @escaping (Element) throws -> Result) -> ScheduledSequence<Result, Scheduling> {
+public extension ScheduledObservableType {
+    func map<Result>(_ transform: @escaping (Element) throws -> Result) -> ScheduledObservable<Result, Scheduling> {
         let target = source.flatMap { element, scheduling in
             Observable.just(element)
                 .map(transform)
@@ -10,11 +10,11 @@ public extension ScheduledSequence {
                 }
         }
 
-        return ScheduledSequence<Result, Scheduling>(raw: target)
+        return ScheduledObservable<Result, Scheduling>(raw: target)
     }
 
-    func filter(_ predicate: @escaping (Element) throws -> Bool) -> ScheduledSequence<Element, Scheduling> {
-        return ScheduledSequence(raw: source.flatMap { element, scheduling in
+    func filter(_ predicate: @escaping (Element) throws -> Bool) -> ScheduledObservable<Element, Scheduling> {
+        return ScheduledObservable(raw: source.flatMap { element, scheduling in
             Observable.just(element)
                 .filter(predicate)
                 .map { result in
@@ -23,8 +23,8 @@ public extension ScheduledSequence {
         })
     }
 
-    func flatMap<Result, Scheduler: AsyncScheduling>(_ selector: @escaping (Element) -> ScheduledSequence<Result, Scheduler>)
-        -> ScheduledSequence<Result, Scheduler> {
+    func flatMap<Result, Scheduler: AsyncScheduling>(_ selector: @escaping (Element) -> ScheduledObservable<Result, Scheduler>)
+        -> ScheduledObservable<Result, Scheduler> {
 
         let resultSequence: Observable<(Result, Scheduler)> = source.flatMap { element, _ -> Observable<(Result, Scheduler)> in
             Observable.just(element)
@@ -34,11 +34,11 @@ public extension ScheduledSequence {
                 }
         }
 
-        return ScheduledSequence<Result, Scheduler>(raw: resultSequence)
+        return ScheduledObservable<Result, Scheduler>(raw: resultSequence)
     }
 
-    func flatMap<Result, Scheduler: SyncScheduling>(_ selector: @escaping (Element) -> ScheduledSequence<Result, Scheduler>)
-        -> ScheduledSequence<Result, Scheduling> {
+    func flatMap<Result, Scheduler: SyncScheduling>(_ selector: @escaping (Element) -> ScheduledObservable<Result, Scheduler>)
+        -> ScheduledObservable<Result, Scheduling> {
 
         let resultSequence = source
             .flatMap { element, originalScheduling -> Observable<(Result, Scheduling)> in
@@ -52,11 +52,11 @@ public extension ScheduledSequence {
                     }
             }
 
-        return ScheduledSequence<Result, Scheduling>(raw: resultSequence)
+        return ScheduledObservable<Result, Scheduling>(raw: resultSequence)
     }
 
-    func flatMapLatest<Result, Scheduler: AsyncScheduling>(_ selector: @escaping (Element) -> ScheduledSequence<Result, Scheduler>)
-        -> ScheduledSequence<Result, Scheduler> {
+    func flatMapLatest<Result, Scheduler: AsyncScheduling>(_ selector: @escaping (Element) -> ScheduledObservable<Result, Scheduler>)
+        -> ScheduledObservable<Result, Scheduler> {
 
             let resultSequence: Observable<(Result, Scheduler)> = source.flatMap { element, _ -> Observable<(Result, Scheduler)> in
                 Observable.just(element)
@@ -66,11 +66,11 @@ public extension ScheduledSequence {
                 }
             }
 
-            return ScheduledSequence<Result, Scheduler>(raw: resultSequence)
+            return ScheduledObservable<Result, Scheduler>(raw: resultSequence)
     }
 
-    func flatMapLatest<Result, Scheduler: SyncScheduling>(_ selector: @escaping (Element) -> ScheduledSequence<Result, Scheduler>)
-        -> ScheduledSequence<Result, Scheduling> {
+    func flatMapLatest<Result, Scheduler: SyncScheduling>(_ selector: @escaping (Element) -> ScheduledObservable<Result, Scheduler>)
+        -> ScheduledObservable<Result, Scheduling> {
 
             let resultSequence = source
                 .flatMapLatest { element, originalScheduling -> Observable<(Result, Scheduling)> in
@@ -84,6 +84,6 @@ public extension ScheduledSequence {
                     }
             }
 
-            return ScheduledSequence<Result, Scheduling>(raw: resultSequence)
+            return ScheduledObservable<Result, Scheduling>(raw: resultSequence)
     }
 }

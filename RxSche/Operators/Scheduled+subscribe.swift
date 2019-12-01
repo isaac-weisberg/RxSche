@@ -1,6 +1,6 @@
 import RxSwift
 
-public extension ScheduledSequence {
+public extension ScheduledObservableType {
     func subscribe(onNext: ((Element) -> Void)? = nil, onError: ((Swift.Error) -> Void)? = nil, onCompleted: (() -> Void)? = nil, onDisposed: (() -> Void)? = nil) -> Disposable {
         return source.subscribe(onNext: { element, _ in
             onNext?(element)

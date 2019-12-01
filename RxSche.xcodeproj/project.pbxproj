@@ -12,6 +12,7 @@
 		FAB1BBCD2393CF81006FF679 /* ScheduledSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB1BBCC2393CF81006FF679 /* ScheduledSequence.swift */; };
 		FAB1BBD32393D1A4006FF679 /* Observable+rescheduling.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB1BBD22393D1A4006FF679 /* Observable+rescheduling.swift */; };
 		FAB1BBD72393E8AD006FF679 /* Scheduled+subscribe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB1BBD62393E8AD006FF679 /* Scheduled+subscribe.swift */; };
+		FAB1BBDA2393F2EB006FF679 /* ScheduledObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB1BBD92393F2EB006FF679 /* ScheduledObserver.swift */; };
 		FAD882082392A05A002B6EED /* Scheduled.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD882072392A05A002B6EED /* Scheduled.swift */; };
 		FAD8820C2392A0C9002B6EED /* Scheduled+creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8820B2392A0C9002B6EED /* Scheduled+creation.swift */; };
 		FAD8820E2392A16B002B6EED /* SchedulingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8820D2392A16B002B6EED /* SchedulingType.swift */; };
@@ -27,6 +28,7 @@
 		FAB1BBCC2393CF81006FF679 /* ScheduledSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduledSequence.swift; sourceTree = "<group>"; };
 		FAB1BBD22393D1A4006FF679 /* Observable+rescheduling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+rescheduling.swift"; sourceTree = "<group>"; };
 		FAB1BBD62393E8AD006FF679 /* Scheduled+subscribe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scheduled+subscribe.swift"; sourceTree = "<group>"; };
+		FAB1BBD92393F2EB006FF679 /* ScheduledObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledObserver.swift; sourceTree = "<group>"; };
 		FAD881F02392969D002B6EED /* RxSche.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxSche.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD881F42392969D002B6EED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAD882072392A05A002B6EED /* Scheduled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scheduled.swift; sourceTree = "<group>"; };
@@ -73,6 +75,14 @@
 			path = Observable;
 			sourceTree = "<group>";
 		};
+		FAB1BBD82393F2DD006FF679 /* Observer */ = {
+			isa = PBXGroup;
+			children = (
+				FAB1BBD92393F2EB006FF679 /* ScheduledObserver.swift */,
+			);
+			path = Observer;
+			sourceTree = "<group>";
+		};
 		FAD881E62392969D002B6EED = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +104,7 @@
 		FAD881F22392969D002B6EED /* RxSche */ = {
 			isa = PBXGroup;
 			children = (
+				FAB1BBD82393F2DD006FF679 /* Observer */,
 				FAB1BBD12393D198006FF679 /* Observable */,
 				FAD8820A2392A0AE002B6EED /* Operators */,
 				FAD882092392A07E002B6EED /* System */,
@@ -238,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAD8820E2392A16B002B6EED /* SchedulingType.swift in Sources */,
+				FAB1BBDA2393F2EB006FF679 /* ScheduledObserver.swift in Sources */,
 				FAD8820C2392A0C9002B6EED /* Scheduled+creation.swift in Sources */,
 				FAB1BBD32393D1A4006FF679 /* Observable+rescheduling.swift in Sources */,
 				FAD882142392A548002B6EED /* RxScheduler.swift in Sources */,

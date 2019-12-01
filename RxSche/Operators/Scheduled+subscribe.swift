@@ -6,4 +6,10 @@ public extension ScheduledSequence {
             onNext?(element)
         }, onError: onError, onCompleted: onCompleted, onDisposed: onDisposed)
     }
+
+    func subscribe(to observer: ScheduledObserver<Element, Scheduling>) -> Disposable {
+        return source.subscribe(onNext: { [onNext = observer.onNext] element, _ in
+            onNext?(element)
+        }, onError: observer.onError, onCompleted: observer.onCompleted)
+    }
 }

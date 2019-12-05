@@ -4,10 +4,14 @@ PODS:
     - RxSwift (~> 5)
   - RxRelay (5.0.0):
     - RxSwift (~> 5)
+  - RxSche (0.0.1):
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
   - RxSwift (5.0.0)
 
 DEPENDENCIES:
   - RxCocoa
+  - RxSche (from `./RxSche.podspec`)
   - RxSwift
 
 SPEC REPOS:
@@ -16,11 +20,16 @@ SPEC REPOS:
     - RxRelay
     - RxSwift
 
+EXTERNAL SOURCES:
+  RxSche:
+    :path: "./RxSche.podspec"
+
 SPEC CHECKSUMS:
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
+  RxSche: 62984651e098cd0f761da9fb05e2d6dde2104c9c
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
 
-PODFILE CHECKSUM: eeb148a21370f5d234c20c5d4d1d1d013d0f78d7
+PODFILE CHECKSUM: 2119f2d360535be769a56f131c5574f4141b3a91
 
 COCOAPODS: 1.8.4

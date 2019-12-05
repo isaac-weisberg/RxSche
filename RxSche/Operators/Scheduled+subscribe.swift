@@ -7,9 +7,11 @@ public extension ScheduledObservableType {
         }, onError: onError, onCompleted: onCompleted, onDisposed: onDisposed)
     }
 
-    func subscribe(to observer: ScheduledObserver<Element, Scheduling>) -> Disposable {
-        return source.subscribe(onNext: { [onNext = observer.onNext] element, _ in
-            onNext?(element)
+    func subscribe<O: ScheduledObserverType>(to observer: O) -> Disposable
+        where O.Element == Element, O.Scheduling == Scheduling {
+
+        return source.subscribe(onNext: { [onNext = observer.onNext] element, scheduler in
+            onNext?((element, scheduler))
         }, onError: observer.onError, onCompleted: observer.onCompleted)
     }
 }

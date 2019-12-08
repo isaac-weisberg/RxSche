@@ -10,10 +10,6 @@ public extension Reactive where Base: UIButton {
 
 extension Scheduled {
     static func from<Element>(controlEvent: ControlEvent<Element>) -> ScheduledObservable<Element, MainScheduler> {
-        return ScheduledObservable(raw: controlEvent
-            .asObservable()
-            .map { element in
-                (element, MainScheduler.instance)
-            })
+        return ScheduledObservable(raw: controlEvent.asObservable())
     }
 }

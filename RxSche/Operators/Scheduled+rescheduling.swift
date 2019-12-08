@@ -4,9 +4,7 @@ public extension ScheduledObservableType {
     func observeOn<Scheduler: RxSchedulerType>(_ scheduler: Scheduler)
         -> ScheduledObservable<Element, Scheduler> {
 
-        return ScheduledObservable<Element, Scheduler>(raw: source.observeOn(scheduler).map { element, _ in
-            (element, scheduler)
-        })
+        return ScheduledObservable<Element, Scheduler>(raw: source.observeOn(scheduler))
     }
 
     func subscribeOn<Scheduler: RxSchedulerType>(_ scheduler: Scheduler)
@@ -20,9 +18,6 @@ public extension ScheduledObservableType {
         -> ScheduledObservable<Element, Scheduler>
         where Scheduling: SyncScheduling {
 
-        return ScheduledObservable<Element, Scheduler>(raw: source.subscribeOn(scheduler)
-            .map { element, _ in
-                (element, scheduler)
-            })
+        return ScheduledObservable<Element, Scheduler>(raw: source.subscribeOn(scheduler))
     }
 }

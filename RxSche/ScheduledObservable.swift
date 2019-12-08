@@ -4,13 +4,13 @@ public protocol ScheduledObservableType {
     associatedtype Element
     associatedtype Scheduling: SchedulingType
 
-    var source: Observable<(Element, Scheduling)> { get }
+    var source: Observable<Element> { get }
 }
 
 public struct ScheduledObservable<Element, Scheduling: SchedulingType>: ScheduledObservableType {
-    public let source: Observable<(Element, Scheduling)>
+    public let source: Observable<Element>
 
-    init(raw: Observable<(Element, Scheduling)>) {
+    init(raw: Observable<Element>) {
         self.source = raw
     }
 }
